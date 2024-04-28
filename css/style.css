@@ -1,0 +1,152 @@
+/*Settings globales-----------------------------------------------------------------------------------------------------------------------*/
+
+:root {
+    --verde:#568203;
+    --verdeclaro:#a1ae25;
+    --blanco:#ffffff;
+    --cafe:#704012;
+    --rosa:#cd9989;
+    --rojo:#e30505;
+    --gris:#E9E9E9;
+    --grisoscuro:#E1E1E1;
+    --negro:#111111;
+    --fuente: 'Dm Sans';
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;             /*Hace que 1rem sea igual 10px*/
+}
+
+*, *:after, *:before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    font-weight: bold;
+}
+
+
+/** Terminan Globales -------------------------------------------------------------------------------------------------------------------**/
+
+
+/*main {
+    margin: 0%;
+    padding: 100px 200px 25px 200px;
+    background-color: #f8f8f8;
+}*/
+
+
+/*Navegador header-----------------------------------------------------------------------------------------------------------------------*/
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 98vw;
+    height: 8rem;
+    font-size: 16px;
+    padding: 20px 16px;
+    margin-top: 15px;
+    position: fixed;
+    background-color: var(--blanco);
+    z-index: 1;
+}
+
+header nav img#paltacate-icon {  /*settings del tamaño del logo*/
+    width: 10rem;
+    height: 10rem;
+    padding: 4px;
+}
+
+header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
+    background-color: var(--gris);
+    border-radius: 80px;
+}
+
+.first{
+    display: flex;
+}
+
+.first a {
+    text-decoration: none;
+    color: var(--negro);
+}
+
+.first li {
+    list-style: none;
+    padding: 0px 12px;
+}
+
+.first li #inicio {
+    background-color: var(--verde);
+    color: var(--blanco);
+    border-radius: 30px;
+    padding: 14px 12px 14px;
+}
+
+/*.menu {
+    display: none;
+}*/
+
+/*.crear {
+    display: flex;
+}*/
+
+.search {
+    flex-grow: 1;
+    height: 48px;
+    background-color: var(--gris);
+    border-radius: 30px;
+
+}
+
+.search:hover {
+    background-color: var(--grisoscuro);
+}
+
+.search:focus-within {        /*acciona el borde de search al clicar*/
+    border: 2px solid #7FC1FF;
+}
+
+.barra {
+    display: flex;
+    align-items: center;
+    height: 48px;
+}
+
+#lupa {
+    padding: 10px;
+    color: #767676;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.barra input {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    padding: 0px 8px 0px 0px;
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.barra input:hover + .material-symbols-outlined {
+    display: none;
+}
+
+
+.right-items span {
+    padding: 8px;
+    color: #767676;
+    font-size: 28px;
+}
+
+.right-items span:hover {
+    background-color: #E9E9E9;
+    border-radius: 150px;
+}
+/*termina navegador header-----------------------------------------------------------------------------------------------------------*/
+
