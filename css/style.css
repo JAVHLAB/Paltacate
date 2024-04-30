@@ -27,16 +27,29 @@ body {
     font-weight: bold;
 }
 
-
-/** Terminan Globales -------------------------------------------------------------------------------------------------------------------**/
-
-
-/*main {
+main {
     margin: 0%;
     padding: 100px 200px 25px 200px;
     background-color: #f8f8f8;
-}*/
+}
 
+h1 {
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+/** Terminan Globales -------------------------------------------------------------------------------------------------------------------**/
 
 /*Navegador header-----------------------------------------------------------------------------------------------------------------------*/
 
@@ -150,3 +163,32 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
 }
 /*termina navegador header-----------------------------------------------------------------------------------------------------------*/
 
+/* baner ----------------------------------------------------------------------------------------------------------------------------*/
+
+
+.baner {
+    background-image: url(../img/baner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.contenido-baner {
+    position: absolute;
+    background-color: rgb(0 0 0 / 50%);
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.contenido-baner h1 {
+    color: var(--blanco);
+}
