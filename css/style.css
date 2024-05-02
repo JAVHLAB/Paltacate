@@ -186,7 +186,7 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
     background-size: cover;
     height: 450px;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     border-radius: 20px;
 }
 
@@ -215,19 +215,21 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
 .receta-container a {
     text-decoration: none;
     color: inherit;
+    margin-bottom: 10px;
 }
 
 .receta-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    margin-bottom: 30px;
 }
 
 .receta-preview {
     /*text-decoration: none;*/
     display: flex;
     flex-direction: row;
-    margin-top: 30px;
+    margin-top: 10px;
     height: 200px;
 }
 
@@ -282,4 +284,130 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
 .receta-stats {
     font-size: 16px;
     color: rgb(96, 96, 96);
+}
+/*Termina recetas-------------------------------------------------------------------------------------------------------*/
+
+/*Empieza about us---------------------------------------------------------------------------------------------------------*/
+
+.container-au {
+    /*max-width: 800px;*/
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.sobre-nosotros {
+    background-color: #f5f5f5;
+    padding: 5px 0;
+}
+
+.content-au {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+.image img {
+    width: 250px; /* ajustar el tamaño de la imagen según sea necesario */
+    height: auto;
+    border-radius: 20px;
+}
+
+.text-au {
+    flex: 1;
+    background-color: #f0f6b9; /* Color de fondo del texto */
+    padding: 80px;
+    border-radius: 20px;
+}
+
+.section-description {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: rgb(96, 96, 96);
+}
+/*Termina about us-------------------------------------------------------------------------------------------------------------------*/
+/*Redes sociales----------------------------------------------------------------------------------------------------------------------*/
+/* Estilos para el contenedor de los iconos */
+
+.iconos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.icon {
+    height: 10rem;
+    width: 10rem;
+    background-color: var(--verde);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+
+/*Termina redes sociales----------------------------------------------------------------------------------------------------------------*/
+/*Empieza footer-----------------------------------------------------------------------------------------------------------------------*/
+
+.footer {
+    background-color: var(--verde);
+    color: var(--blanco);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.columna {
+    margin-right: 100px;
+    padding-right: 20px;
+    position: relative;
+}
+
+.columna:last-child {
+    margin-right: 0;
+}
+
+.columna:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px; /* Ajusta el ancho de la línea vertical */
+    height: 100%; /* Ajusta la altura de la línea vertical */
+    width: 1px;
+    background-color: var(--blanco); /* Color de la línea vertical */
+}
+
+.columna h3 {
+    text-align: left;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.columna ul {
+    list-style: none;
+    padding: 0;
+}
+
+.columna ul li {
+    margin-bottom: 5px;
+}
+
+.columna ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.columna ul li a:hover {
+    text-decoration: underline;
+}
+
+.columna p {
+    margin-top: 20px;
 }
