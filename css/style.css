@@ -334,21 +334,29 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
 /* Estilos para el contenedor de los iconos */
 
 .iconos {
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.icon {
+.icono {
     height: 10rem;
     width: 10rem;
     background-color: var(--verde);
+    color: var(--blanco);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
     margin-right: 20px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.icono:hover {
+    background-color: var(--cafe);
 }
 
 

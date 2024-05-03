@@ -1,0 +1,75 @@
+
+/*Modificacion header----------------------------------------------------------------------------------------------------------*/
+
+.first li #explorar {
+    background-color: var(--verde);
+    color: var(--blanco);
+    border-radius: 30px;
+    padding: 14px 12px 14px;
+}
+
+.first li #inicio {
+    background-color: var(--blanco);
+    color: var(--negro);
+}
+
+/*Preview de recetas----------------------------------------------------------------------------------------------------------*/
+
+.receta-contain a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.receta-prev {
+    height: 200px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.receta-prev:hover {
+    background-color: var(--grisoscuro);
+    border-radius: 20px;
+}
+
+.receta-data {
+    margin-top: 20 px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.receta-titulo {
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 900;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.receta-description {
+    font-size: 12px;
+    font-weight:500;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.receta-stats {
+    font-size: 14px;
+    color: rgb(96, 96, 96);
+}
+
+/* Termina Preview---------------------------------------------------------------------------------------------------------------------*/
+
+/*Paginacion--------------------------------------------------------------------------------------------------------------------------*/
+
+.iconos a {
+    height: 50px;
+    width: 50px;
+}
+
+.pag {
+    height: 50px;
+    width: 50px;
+}
