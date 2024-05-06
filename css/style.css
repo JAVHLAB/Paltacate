@@ -2,7 +2,7 @@
 
 :root {
     --verde:#568203;
-    --verdeclaro:#a1ae25;
+    --verdeclaro:#a6c620;
     --blanco:#ffffff;
     --cafe:#704012;
     --rosa:#cd9989;
@@ -30,7 +30,8 @@ body {
 main {
     margin: 0%;
     padding: 140px 200px 25px 200px;
-    background-color: #f8f8f8;
+    background-color: var(--blanco);
+    justify-content: center;
 }
 
 h1 {
@@ -50,7 +51,7 @@ h1,h2,h3 {
 }
 
 .boton {
-    background-color: var(--verdeclaro);
+    background-color: var(--verde);
     color: var(--negro);
     padding: 1rem 3rem;
     margin-top: 1rem;
@@ -260,7 +261,7 @@ header nav img#paltacate-icon:hover {  /*sobrea alrededor del logo*/
 }
 
 .receta-info .boton:hover {
-    background-color: var(--verde); /* Cambia el color de fondo al pasar el cursor */
+    background-color: var(--cafe); /* Cambia el color de fondo al pasar el cursor */
     color: var(--blanco); /* Cambia el color del texto al pasar el cursor */
 }
 
