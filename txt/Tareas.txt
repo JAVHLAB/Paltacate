@@ -1,0 +1,22 @@
+Back End
+Login
+Verificiacion de Usuarios
+Contraseña
+Calificaciones
+Comentarios
+Guardar Recetas
+Definir cada tipo de perfil
+Buscador 
+Seguir Perfiles
+Compartir 
+Personalizar Perfil
+Descargar
+Sistemas de Preferencias
+
+
+Front End
+Diseño de pagina web
+Adaptar a distintas 
+
+FINAL
+Comparacion de recetas
