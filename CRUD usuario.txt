@@ -1,0 +1,29 @@
+CREATE USUARIO
+PHP
+$sql = "INSERT INTO usuarios (nombre, email, contrasena, nombre_usuario) VALUES (?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssss", $nombre, $email, $contrasena, $nombre_usuario);
+$stmt->execute();
+
+READ USUARIO
+PHP
+$sql = "SELECT * FROM usuarios WHERE ID_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID_usuario);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+UPDATE USUARIO
+PHP
+$sql = "UPDATE usuarios SET nombre = ?, email = ?, contrasena = ?, nombre_usuario = ? WHERE ID_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssssi", $nombre, $email, $contrasena, $nombre_usuario, $ID_usuario);
+$stmt->execute();
+
+DELETE USUARIO
+PHP
+$sql = "DELETE FROM usuarios WHERE ID_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID_usuario);
+$stmt->execute();

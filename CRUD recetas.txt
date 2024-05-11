@@ -1,0 +1,29 @@
+CREATE RECETAS
+PHP
+$sql = "INSERT INTO recetas (ID_usuario, titulo, categoria, dificultad, tiempo_preparacion) VALUES (?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("isssi", $ID_usuario, $titulo, $categoria, $dificultad, $tiempo_preparacion);
+$stmt->execute();
+
+READ RECETAS
+PHP
+$sql = "SELECT * FROM recetas WHERE ID_recetas = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID_recetas);
+$stmt->execute();
+$result = $stmt->get_result();
+$receta = $result->fetch_assoc();
+
+UPDATE RECETAS
+PHP
+$sql = "UPDATE recetas SET titulo = ?, categoria = ?, dificultad = ?, tiempo_preparacion = ? WHERE ID_recetas = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssii", $titulo, $categoria, $dificultad, $tiempo_preparacion, $ID_recetas);
+$stmt->execute();
+
+DELETE RECETAS
+PHP
+$sql = "DELETE FROM recetas WHERE ID_recetas = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID_recetas);
+$stmt->execute();
