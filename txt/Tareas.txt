@@ -1,24 +1,24 @@
 Back End
     USUARIOS# Citlali y Angel
-    -Login 
-    -Verificiacion de Usuarios 
-    -Contraseña 
-    -Reportes 
+    -Login IMPORTANTE
+    -Verificiacion de Usuarios IMPORTANTE
+    -Contraseña IMPORTANTE
+    -Reportes IMPORTANTE
     -Definir cada tipo de perfil
     -Seguir Perfiles
     -Personalizar Perfil
 
     RECETAS # Juan Pablo y Emmanuel
-    -Recetas 
-    -Calificaciones
-    -Comentarios
+    -Recetas IMPORTANTE
+    -Calificaciones IMPORTANTE
+    -Comentarios IMPORTANTE
+    -Buscador IMPORTANTE
     -Guardar Recetas
-    -Buscador 
     -Compartir 
     -Descargar
 
     FINAL #Todos
-    -Sistemas de Preferencias
+    -Sistemas de Preferencias IMPORTANTE
     -Comparacion de recetas
 
 
