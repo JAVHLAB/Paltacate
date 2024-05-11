@@ -1,22 +1,27 @@
 Back End
-Login
-Verificiacion de Usuarios
-Contraseña
-Calificaciones
-Comentarios
-Guardar Recetas
-Definir cada tipo de perfil
-Buscador 
-Seguir Perfiles
-Compartir 
-Personalizar Perfil
-Descargar
-Sistemas de Preferencias
+    USUARIOS# Citlali y Angel
+    -Login 
+    -Verificiacion de Usuarios 
+    -Contraseña 
+    -Reportes 
+    -Definir cada tipo de perfil
+    -Seguir Perfiles
+    -Personalizar Perfil
+
+    RECETAS # Juan Pablo y Emmanuel
+    -Recetas 
+    -Calificaciones
+    -Comentarios
+    -Guardar Recetas
+    -Buscador 
+    -Compartir 
+    -Descargar
+
+    FINAL #Todos
+    -Sistemas de Preferencias
+    -Comparacion de recetas
 
 
-Front End
-Diseño de pagina web
-Adaptar a distintas 
-
-FINAL
-Comparacion de recetas
+Front End # Javier
+    -Diseño de pagina web
+    -Adaptar a distintas 
