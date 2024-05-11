@@ -1,0 +1,92 @@
+BASE DE DATOS PALTACATE
+CREATE TABLE `comentarios` (
+  `ID_comentario` int NOT NULL AUTO_INCREMENT,
+  `ID_usuario` int DEFAULT NULL,
+  `ID_receta` int DEFAULT NULL,
+  `contenido` text,
+  `fecha_comentario` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_comentario`),
+  KEY `ID_usuario` (`ID_usuario`),
+  KEY `ID_receta` (`ID_receta`),
+  CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`),
+  CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`ID_receta`) REFERENCES `recetas` (`ID_recetas`)
+) 
+CREATE TABLE `ingredientes` (
+  `ID_ingredientes` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_ingredientes`)
+) 
+CREATE TABLE `pasos_preparacion` (
+  `ID_preparacion` int NOT NULL AUTO_INCREMENT,
+  `ID_receta` int DEFAULT NULL,
+  `numero_paso` int DEFAULT NULL,
+  `decripcion` text,
+  PRIMARY KEY (`ID_preparacion`),
+  KEY `ID_receta` (`ID_receta`),
+  CONSTRAINT `pasos_preparacion_ibfk_1` FOREIGN KEY (`ID_receta`) REFERENCES `recetas` (`ID_recetas`)
+) 
+CREATE TABLE `perfil` (
+  `ID_perfil` int NOT NULL AUTO_INCREMENT,
+  `ID_usuario` int DEFAULT NULL,
+  `foto_perfil` varchar(255) DEFAULT NULL,
+  `descripcion` text,
+  `redes_sociales` text,
+  PRIMARY KEY (`ID_perfil`),
+  KEY `ID_usuario` (`ID_usuario`),
+  CONSTRAINT `perfil_ibfk_1` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`)
+)
+CREATE TABLE `recetas` (
+  `ID_recetas` int NOT NULL AUTO_INCREMENT,
+  `ID_usuario` int DEFAULT NULL,
+  `titulo` varchar(100) DEFAULT NULL,
+  `categoria` varchar(50) DEFAULT NULL,
+  `dificultad` enum('Fácil','Moderado','Difícil') DEFAULT NULL,
+  `tiempo_preparacion` int DEFAULT NULL,
+  `fecha_publicacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_recetas`),
+  KEY `ID_usuario` (`ID_usuario`),
+  CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`)
+) 
+CREATE TABLE `recetas_ingredientes` (
+  `ID_receta` int NOT NULL,
+  `ID_ingrediente` int NOT NULL,
+  `cantidad` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_receta`,`ID_ingrediente`),
+  KEY `ID_ingrediente` (`ID_ingrediente`),
+  CONSTRAINT `recetas_ingredientes_ibfk_1` FOREIGN KEY (`ID_receta`) REFERENCES `recetas` (`ID_recetas`),
+  CONSTRAINT `recetas_ingredientes_ibfk_2` FOREIGN KEY (`ID_ingrediente`) REFERENCES `ingredientes` (`ID_ingredientes`)
+) 
+CREATE TABLE `reportes` (
+  `ID_reporte` int NOT NULL AUTO_INCREMENT,
+  `ID_comentario` int DEFAULT NULL,
+  `ID_moderador` int DEFAULT NULL,
+  `motivo` varchar(255) DEFAULT NULL,
+  `descripcion` text,
+  `fecha_reporte` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_reporte`),
+  KEY `ID_comentario` (`ID_comentario`),
+  KEY `ID_moderador` (`ID_moderador`),
+  CONSTRAINT `reportes_ibfk_1` FOREIGN KEY (`ID_comentario`) REFERENCES `comentarios` (`ID_comentario`),
+  CONSTRAINT `reportes_ibfk_2` FOREIGN KEY (`ID_moderador`) REFERENCES `usuarios` (`ID_usuario`)
+)
+CREATE TABLE `roles` (
+  `ID_rol` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_rol`)
+) 
+CREATE TABLE `usuarios` (
+  `ID_usuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `contrasena` varchar(50) DEFAULT NULL,
+  `nombre_usuario` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID_usuario`)
+) 
+CREATE TABLE `usuarios_roles` (
+  `ID_usuario` int NOT NULL,
+  `ID_rol` int NOT NULL,
+  PRIMARY KEY (`ID_usuario`,`ID_rol`),
+  KEY `ID_rol` (`ID_rol`),
+  CONSTRAINT `usuarios_roles_ibfk_1` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`),
+  CONSTRAINT `usuarios_roles_ibfk_2` FOREIGN KEY (`ID_rol`) REFERENCES `roles` (`ID_rol`)
+) 
