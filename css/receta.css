@@ -1,0 +1,88 @@
+
+
+.datos p {
+    display: inline-block;
+    margin: 0;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgb(96, 96, 96);
+    margin: 0 20px;
+}
+
+.datos {
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    border: 2px solid var(--rojo);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.column p {
+    font-size: 20px;
+}
+
+.svg-container {
+    flex-basis: 50px; /* Ancho fijo para la columna del SVG */
+    margin-right: 20px;
+}
+
+.svg-container svg {
+    width: 100px;
+    height: auto;
+}
+/*Lista de ingredientes----------------------------------------------------------------------------------------------------*/
+
+.ingredient-container {
+    max-width: 600px;
+    /*margin: 0 auto;*/
+    /*padding: 20px;*/
+}
+
+.ingredient-list {
+    font-size: 14px;
+    /*list-style-type: none;*/
+    /*padding: 0;*/
+}
+
+.ingredient-list li {
+    margin-bottom: 5px;
+    padding: 6px;
+}
+
+
+/*Imagen principal---------------------------------------------------------------------------------------------------*/
+.image {
+    margin-top: 20px;
+}
+
+main .image {
+    height: 450px;
+    width: 100%;
+    border-radius: 30px;
+}
+/*----------------------------------------------------------------------------------------------------------------------------*/
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.image-container img {
+    width: 30%; /* Asigna el ancho deseado para las imágenes */
+    border-radius: 20px;
+}
+
+.recipe-description {
+    font-size: 12px;
+}

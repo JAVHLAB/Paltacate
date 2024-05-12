@@ -1,0 +1,120 @@
+
+
+.contenido-portada {
+    position: relative;
+    width: 100%;
+}
+
+.background-image {
+    background-image: url(../img/perfil.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    position: relative;
+    /*margin-bottom: 50px;*/
+}
+
+.contact-image {
+    position: absolute;
+    top: 200px; 
+    left: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; 
+    border: 3px solid var(--verde); 
+}
+
+
+.boton {
+    position: absolute;
+    top: 150px; 
+    right: 50px;
+    width: 150px;
+    background-color: var(--blanco);
+    color: var(--rojo);
+}
+
+.boton:hover {
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+.contenido-solido {
+    background-color: var(--verdeclaro);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.contenido-solido h3 {
+    color: var(--negro);
+    margin-top: 30px;
+    margin-left: 55px;
+}
+
+.contenido-solido .iconos {
+    position: absolute;
+    top: 400px;
+    right: 250px;    
+}
+
+.icono {    
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+}
+
+/*Etiqueta Roja----------------------------------------------------------------------------------------------------------*/
+
+.container-etiqueta {
+    display: flex;
+    justify-content: center;
+}
+
+.etiqueta {
+    background-color: red;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.etiqueta h2 {
+    color: white;
+}
+
+/*Nueva publicacion--------------------------------------------------------------------------------------------------------*/
+
+.container-crear {
+    height: 50px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.container-crear a {
+    color: var(--rojo);
+    text-decoration: none;
+}
+
+.container-crear p {
+    font-size: 20px;
+}
+
+.container-crear a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
