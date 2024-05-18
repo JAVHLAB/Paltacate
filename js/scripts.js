@@ -77,4 +77,42 @@ document.querySelectorAll('.input-file').forEach(function(inputFile) {
       input.style.borderRadius = '1rem';
     });
   }
+
+  window.addEventListener('load', function() {
+    // Obtener el menú y el enlace del perfil
+    var menu = document.getElementById("menu");
+    var profileLink = document.getElementById("profile-link");
+    
+    // Ocultar el menú al cargar la página
+    menu.style.display = "none";
+    
+    // Agregar la lógica de clic para abrir y cerrar el menú
+    profileLink.addEventListener('click', function() {
+      if (menu.style.display === "block") {
+        menu.style.display = "none"; // Cerrar el menú
+      } else {
+        menu.style.display = "block"; // Abrir el menú
+      }
+    });
+  });
+  
+
+  function toggleMenu() {
+    var menu = document.getElementById("menu");
+    var profileLink = document.getElementById("profile-link");
+    
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      profileLink.classList.remove("abierto"); // Remueve la clase "abierto"
+    } else {
+      menu.style.display = "block";
+      profileLink.classList.add("abierto"); // Agrega la clase "abierto"
+    }
+  }
+  
+  function cerrarSesion() {
+    // Agregar código para cerrar sesión aquí
+    alert("Cerrar sesión");
+  }
+  
   

@@ -13,36 +13,55 @@
     <link rel="stylesheet" href="css/crearReceta.css">
 </head>
 <body>
-    <header>
-        <nav id="navbar-paltacate">
-            <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
-            <div class="left-items">
-                <ul class="first">
-                    <li><a href="index.html" id="inicio">Inicio</a></li>
-                    <li><a href="explorar.html" id="explorar">Explorar</a></li>
-                    <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
-                </ul>
-            </div>
+  <header>
+    <nav id="navbar-paltacate">
+        <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+        <div class="left-items">
+            <ul class="first">
+                <li><a href="index.html" id="inicio">Inicio</a></li>
+                <li><a href="explorar.html" id="explorar">Explorar</a></li>
+                <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
+            </ul>
+        </div>
 
-            <div class="search">
-                <div class="barra">
-                    <div><span class="material-symbols-outlined" id="lupa">search</span></div>
-                    <input type="text" placeholder="Buscar" class="finder">
-                </div>
+        <div class="search">
+            <div class="barra">
+                <div><span class="material-symbols-outlined" id="lupa">search</span></div>
+                <input type="text" placeholder="Buscar" class="finder">
             </div>
+        </div>
 
-            <div class="right-items">
-                <a href="#">
-                    <span class="material-symbols-outlined" id="notifications">notifications</span>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-outlined" id="profile-img">account_circle</span>
-                </a>
-                
-                
-            </div>          
-        </nav>
-    </header>
+        <div class="right-items">
+            <a href="#">
+                <span class="material-symbols-outlined" id="notifications">notifications</span>
+            </a>
+            <a href="#" onclick="toggleMenu()">
+                <span class="material-symbols-outlined" id="profile-img">account_circle</span>
+            </a>
+            
+          </div>
+          <script>
+            window.onload = function() {
+                var profileImg = document.getElementById("profile-img");
+                profileImg.click();
+                profileImg.click();
+            };
+            </script>
+            
+
+        <div id="menu" class="menu">
+            <ul>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
 
     <main class="form">
         <h1>Crea tu propia receta</h1>
@@ -74,7 +93,7 @@
               </div>
 
               <div class="campo">
-                <input class="input-text" type="number" id="tiempo" name="tiempo" placeholder="Porciones" min="1" max="200" required/>
+                <input class="input-text" type="number" id="tiempo" name="tiempo" placeholder="Porciones " min="1" max="200" required/>
               </div>
 
               <div class="campo">
