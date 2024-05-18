@@ -1,105 +1,80 @@
-//functions
+document.querySelectorAll('.input-file').forEach(function(inputFile) {
+    inputFile.addEventListener('change', function() {
+      var files = this.querySelector('.input-file-button').files;
+      var previews = this.parentElement.querySelectorAll('.image-preview');
+  
+      // Ocultar todas las vistas previas
+      previews.forEach(function(preview) {
+        preview.src = '';
+        preview.parentElement.style.display = 'none';
+      });
+  
+      // Mostrar las vistas previas correspondientes a los archivos seleccionados
+      for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.onload = (function(file, preview) {
+          return function(event) {
+            preview.src = event.target.result;
+            preview.parentElement.style.display = 'block';
+          };
+        })(files[i], previews[i]);
+        reader.readAsDataURL(files[i]);
+      }
+    });
+  });
+  
+  
+  
+  
+  document.getElementById('image-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var formData = new FormData(this);
+    // Aquí puedes enviar el formData a través de AJAX o realizar cualquier otra acción con los datos del formulario
+  });
 
-//Genera las previsualizaciones
-function createPreview(file) {
-    var imgCodified = URL.createObjectURL(file);
-    var img = $('<div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-12"><div class="image-container"> <figure> <img src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> <i class="icon-cross"></i> </figcaption> </figure> </div></div>');
-    $(img).insertBefore("#add-photo-container");
-}
 
-
-//modal
-
-function showModal(card) {
-  $("#" + card).show();
-  $(".modal").addClass("show");
-}
-
-function closeModal() {
-  $(".modal").removeClass("show");
-  setTimeout(function () {
-    $(".modal .modal-card").hide();
-  }, 300);
-}
-
-function loading(status, tag) {
-  if (status) {
-    $("#loading .tag").text(tag);
-    showModal("loading");
+  
+  function agregarIngrediente() {
+    const ingredientesContainer = document.getElementById('ingredientes-container');
+    const nuevaFila = document.createElement('div');
+    nuevaFila.classList.add('ingredient-row');
+    nuevaFila.innerHTML = `
+      <input class="input-text" type="text" name="nombre[]" placeholder="Nombre del Ingrediente" required>
+      <input class="input-text" type="number" name="cantidad[]" placeholder="Cantidad" min="1" required>
+      <select class="input-text" name="unidades[]">
+        <option value="" disabled selected>Seleccione la unidad</option>
+        <option value="gramos">Gramos (g)</option>
+        <option value="kilogramos">Kilogramos (kg)</option>
+        <option value="miligramos">Miligramos (mg)</option>
+        <option value="onzas">Onzas (oz)</option>
+        <option value="libras">Libras (lb)</option>
+        <option value="mililitros">Mililitros (ml)</option>
+        <option value="litros">Litros (lt)</option>
+        <option value="centimetros-cubicos">Centímetros cúbicos (cm³)</option>
+        <option value="tazas">Tazas (cup)</option>
+        <option value="cucharadas">Cucharadas (tbsp)</option>
+        <option value="cucharaditas">Cucharaditas (tsp)</option>
+        <option value="onzas-liquidas">Onzas líquidas (fl oz)</option>
+        <option value="unidades">Unidades (u)</option>
+        <option value="piezas">Piezas (pz)</option>
+        <option value="rebanadas">Rebanadas (sl)</option>
+        <option value="rodajas">Rodajas (slc)</option>
+        <option value="porciones">Porciones (porc)</option>
+        <option value="bolsas">Bolsas (bag)</option>
+        <option value="botellas">Botellas (btl)</option>
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
+    `;
+    ingredientesContainer.appendChild(nuevaFila);
+  
+    // Aplicar estilos a los nuevos elementos
+    const inputs = nuevaFila.querySelectorAll('.input-text');
+    inputs.forEach(input => {
+      input.style.fontSize = '16px';
+      input.style.width = '100%';
+      input.style.border = '3px solid var(--verde)';
+      input.style.padding = '1.5rem';
+      input.style.borderRadius = '1rem';
+    });
   }
-  else {
-    closeModal();
-  }
-}
-
-function showMessage(message) {
-  $("#Message .tag").text(message);
-  showModal("Message");
-}
-
-
-//scripts
-
-$(document).ready(function(){
-
-    // Modal
-
-    $(".modal").on("click", function (e) {
-        console.log(e);
-        if (($(e.target).hasClass("modal-main") || $(e.target).hasClass("close-modal")) && $("#loading").css("display") == "none") {
-            closeModal();
-        }
-    });
-
-    // -> Modal
-
-    // Abrir el inspector de archivos
-    
-    $(document).on("click", "#add-photo", function(){
-        $("#add-new-photo").click();
-    });
-    
-    // -> Abrir el inspector de archivos
-
-    // Cachamos el evento change
-    
-    $(document).on("change", "#add-new-photo", function () {
-    
-        console.log(this.files);
-        var files = this.files;
-        var element;
-        var supportedImages = ["image/jpeg", "image/png", "image/gif"];
-        var seEncontraronElementoNoValidos = false;
-
-        for (var i = 0; i < files.length; i++) {
-            element = files[i];
-            
-            if (supportedImages.indexOf(element.type) != -1) {
-                createPreview(element);
-            }
-            else {
-                seEncontraronElementoNoValidos = true;
-            }
-        }
-
-        if (seEncontraronElementoNoValidos) {
-            showMessage("Se encontraron archivos no validos.");
-        }
-        else {
-            showMessage("Todos los archivos se subieron correctamente.");
-        }
-    
-    });
-    
-    // -> Cachamos el evento change
-
-    // Eliminar previsualizaciones
-    
-    $(document).on("click", "#Images .image-container", function(e){
-        $(this).parent().remove();
-    });
-    
-    // -> Eliminar previsualizaciones
-
-});
-
+  

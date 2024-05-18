@@ -13,23 +13,6 @@
     <link rel="stylesheet" href="css/crearReceta.css">
 </head>
 <body>
-  <div class="modal">
-    <div class="modal-main">
-      <div class="row">
-        <div class="c-3-lg c-3-md c-1-sm close-modal"></div>
-        <div class="c-6-lg c-6-md c-10-sm c-12-xs close-modal">
-          <div class="modal-card" id="loading">
-            <div class="preloader"></div>
-            <span class="tag">Cargando...</span>
-          </div>
-          <div class="modal-card" id="Message">
-            <span class="tag"></span>
-          </div>
-        </div>
-        <div class="c-3-lg c-3-md c-1-sm close-modal"></div>
-      </div>
-    </div>
-  </div>
     <header>
         <nav id="navbar-paltacate">
             <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
@@ -63,69 +46,131 @@
 
     <main class="form">
         <h1>Crea tu propia receta</h1>
-        <form class="formulario">
+        <form class="formulario" id="miFormulario">
           <fieldset>
             <legend>LLena todos los campos</legend>
             <div class="contenedor-campos">
 
               <div class="campo">
-                <input class="input-text" type="text" id="nombre" placeholder="Nombre del platillo" />
+                <input class="input-text" type="text" id="nombre" placeholder="Nombre del platillo" required/>
               </div>
 
               <div class="campo">
-                <input class="input-text" type="number" id="tiempo" name="tiempo" placeholder="tiempo (minutos)" min="1" max="120"/>
+                <input class="input-text" type="number" id="tiempo" name="tiempo" placeholder="tiempo (minutos)" min="1" required/>
               </div>
 
-                <select id="opciones" class="campo input-select input-text">
-                    <option disabled selected>Selecciona una opción</option>
-                    <option value="opcion1">Postre</option>
-                    <option value="opcion2">Plato fuerte</option>
-                    <option value="opcion3">Vegetariano</option>
-                    <option value="opcion4">Vegano</option>
-                    <option value="opcion5">Platillo típico</option>
-                    <option value="opcion6">Bebidas alcoholicas</option>
-                    <option value="opcion7">Sustancias controladas</option>
-                    <!-- Agrega más opciones según sea necesario -->
+              <div class="campo">
+                <select id="opciones" class="input-text" name="tipos[]" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="opcion1">Postre</option>
+                  <option value="opcion2">Plato fuerte</option>
+                  <option value="opcion3">Vegetariano</option>
+                  <option value="opcion4">Vegano</option>
+                  <option value="opcion5">Platillo típico</option>
+                  <option value="opcion6">Bebidas alcoholicas</option>
+                  <option value="opcion7">Sustancias controladas</option>
+                  <!-- Agrega más opciones según sea necesario -->
                 </select>
-
-              <div class="campo">
-                <textarea class="input-text" id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
               </div>
 
               <div class="campo">
+                <input class="input-text" type="number" id="tiempo" name="tiempo" placeholder="Porciones" min="1" max="200" required/>
+              </div>
+
+              <div class="campo">
+                <textarea class="input-text" id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+              </div>
+
+              <!--<div class="campo">
                 <textarea class="input-text" id="ingredientes" name="ingredientes" placeholder="Ingredientes (Separa cada ingrediente con comas)"></textarea>
+              </div>-->
+
+              <div class="campo" id="ingredientes-container">
+                <div class="ingredient-row">
+                  <input class="input-text" type="text" name="nombre[]" placeholder="Nombre del Ingrediente" required>
+                  <input class="input-text" type="number" name="cantidad[]" placeholder="Cantidad" min="1" required>
+                  <select class="input-text" name="unidades[]" required>
+                    <option value="" disabled selected>Seleccione la unidad</option>
+                    <option value="gramos">Gramos (g)</option>
+                    <option value="kilogramos">kilogramos (kg)</option>
+                    <option value="miligramoas">Miligramos (mg)</option>
+                    <option value="onzas">Onzas (oz)</option>
+                    <option value="libras">Libras (lb)</option>
+                    <option value="mililitros">Mililitros (ml)</option>
+                    <option value="litros">Litros (lt)</option>
+                    <option value="centimetros-cubicos">Centrimetros cubicos (cm3)</option>
+                    <option value="tazas">Tazas (cup)</option>
+                    <option value="cucharadas">Cucharadas (tbsp)</option>
+                    <option value="cucharadita">Cucharaditas (tsp)</option>
+                    <option value="cucharadas">Cucharadas (tbsp)</option>
+                    <option value="onzas-liquidas">Onzas liquidas (fl oz)</option>
+                    <option value="unidades">Unidaes (u)</option>
+                    <option value="piezas">Piezas (pz)</option>
+                    <option value="rebanadas">Rebanadas (sl)</option>
+                    <option value="rodajas">Rodajas (slc)</option>
+                    <option value="porciones">Porciones (porc)</option>
+                    <option value="bolsas">Bolsas (bag)</option>
+                    <option value="botellas">Botellas (btl)</option>
+
+                    <!-- Agrega más opciones según tus necesidades -->
+                  </select>
+                </div>
               </div>
-            
+
+              <button class="boton campo" type="button" onclick="agregarIngrediente()">Agregar Ingrediente</button>
+
+              
+
+
               <div class="campo">
                 <textarea class="input-text" id="preparacion" name="preparacion" placeholder="Instrucciones"></textarea>
               </div>
 
-              <div class="campo imagenes">
-                <div class="row">
-                  <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-12" id="add-photo-container">
-                      <div class="add-new-photo first" id="add-photo">
-                          <span><i class="icon-camera"></i></span>
-                      </div>
-                      <input type="file" multiple id="add-new-photo" name="images[]">
+              <div class="fotos campo">
+                <div class="col">
+                  <label class="input-file">
+                    <span class="input-file-label">Seleccionar imagen</span>
+                    <input type="file" class="input-file-button" accept="image/*" multiple>
+                  </label>
+                  <div class="image-preview-container">
+                    <img class="image-preview" src="#" alt="Vista previa de la imagen">
                   </div>
-              </div>            
-              </div>
-                
+                </div>
+                <div class="col">
+                  <label class="input-file">
+                    <span class="input-file-label">Seleccionar imagen</span>
+                    <input type="file" class="input-file-button" accept="image/*" multiple>
+                  </label>
+                  <div class="image-preview-container">
+                    <img class="image-preview" src="#" alt="Vista previa de la imagen">
+                  </div>
+                </div>
+                <div class="col">
+                  <label class="input-file">
+                    <span class="input-file-label">Seleccionar imagen</span>
+                    <input type="file" class="input-file-button" accept="image/*" multiple>
+                  </label>
+                  <div class="image-preview-container">
+                    <img class="image-preview" src="#" alt="Vista previa de la imagen">
+                  </div>
+                </div>
+                <div class="col">
+                  <label class="input-file">
+                    <span class="input-file-label">Seleccionar imagen</span>
+                    <input type="file" class="input-file-button" accept="image/*" multiple>
+                  </label>
+                  <div class="image-preview-container">
+                    <img class="image-preview" src="#" alt="Vista previa de la imagen">
+                  </div>
+                </div>
+              </div>  
             </div>
-            
-              <div class="alinear-derecha flex">
-                <input class="boton w-100" type="submit" value="Guardar">
-              </div>
-  
           </fieldset>
+            <button type="submit" class="boton" >Guardar</button>
         </form>
       </section>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
     <script src="js/scripts.js"></script>
 </body>
 </html>
