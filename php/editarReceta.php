@@ -23,8 +23,8 @@ Falta:
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/crearReceta.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/crearReceta.css">
 </head>
 <body>
   <header>
@@ -32,8 +32,8 @@ Falta:
         <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
         <div class="left-items">
             <ul class="first">
-                <li><a href="index.html" id="inicio">Inicio</a></li>
-                <li><a href="explorar.html" id="explorar">Explorar</a></li>
+                <li><a href="../index.html" id="inicio">Inicio</a></li>
+                <li><a href="../explorar.html" id="explorar">Explorar</a></li>
                 <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
             </ul>
         </div>
