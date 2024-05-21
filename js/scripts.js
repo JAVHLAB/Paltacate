@@ -79,23 +79,12 @@ document.querySelectorAll('.input-file').forEach(function(inputFile) {
   }
 
   window.addEventListener('load', function() {
-    // Obtener el menú y el enlace del perfil
-    var menu = document.getElementById("menu");
-    var profileLink = document.getElementById("profile-link");
+    // Obtener el elemento del icono de perfil
+    var profileImg = document.getElementById("profile-img");
     
-    // Ocultar el menú al cargar la página
-    menu.style.display = "none";
-    
-    // Agregar la lógica de clic para abrir y cerrar el menú
-    profileLink.addEventListener('click', function() {
-      if (menu.style.display === "block") {
-        menu.style.display = "none"; // Cerrar el menú
-      } else {
-        menu.style.display = "block"; // Abrir el menú
-      }
-    });
+    // Llama al método click() en el elemento del icono de perfil para simular un clic
+    profileImg.click();
   });
-  
 
   function toggleMenu() {
     var menu = document.getElementById("menu");

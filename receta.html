@@ -9,38 +9,59 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Staatliches&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/receta.css">
+    <link rel="stylesheet" href="css/receta_sociales.css">
 </head>
 <body>
-    <header>
-        <nav id="navbar-paltacate">
-            <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
-            <div class="left-items">
-                <ul class="first">
-                    <li><a href="index.html" id="inicio">Inicio</a></li>
-                    <li><a href="explorar.html" id="explorar">Explorar</a></li>
-                    <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
-                </ul>
-            </div>
+</head>
+<body>
+  <header>
+    <nav id="navbar-paltacate">
+        <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+        <div class="left-items">
+            <ul class="first">
+                <li><a href="index.html" id="inicio">Inicio</a></li>
+                <li><a href="explorar.html" id="explorar">Explorar</a></li>
+                <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
+            </ul>
+        </div>
 
-            <div class="search">
-                <div class="barra">
-                    <div><span class="material-symbols-outlined" id="lupa">search</span></div>
-                    <input type="text" placeholder="Buscar" class="finder">
-                </div>
+        <div class="search">
+            <div class="barra">
+                <div><span class="material-symbols-outlined" id="lupa">search</span></div>
+                <input type="text" placeholder="Buscar" class="finder">
             </div>
+        </div>
 
-            <div class="right-items">
-                <a href="#">
-                    <span class="material-symbols-outlined" id="notifications">notifications</span>
-                </a>
-                <a href="login.html">
-                    <span class="material-symbols-outlined" id="profile-img">account_circle</span>
-                </a>  
-            </div>          
-        </nav>
-    </header>    
+        <div class="right-items">
+            <a href="#">
+                <span class="material-symbols-outlined" id="notifications">notifications</span>
+            </a>
+            <a href="#" onclick="toggleMenu()">
+                <span class="material-symbols-outlined" id="profile-img">account_circle</span>
+            </a>
+            
+          </div>
+          <script>
+            window.onload = function() {
+                var profileImg = document.getElementById("profile-img");
+                profileImg.click();
+                profileImg.click();
+            };
+            </script>
+            
+
+        <div id="menu" class="menu">
+            <ul>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>    
 
 
 
@@ -150,6 +171,26 @@
                 </div>
             </div>
         </section">
+        <hr>
+        <div class="wrapper">
+            <h2>Califica esta receta</h2>
+            <form action="#">
+                <div class="rating">
+                    <input type="number" name="rating" hidden>
+                    <i class='bx bx-star star' style="--i: 0;"></i>
+                    <i class='bx bx-star star' style="--i: 1;"></i>
+                    <i class='bx bx-star star' style="--i: 2;"></i>
+                    <i class='bx bx-star star' style="--i: 3;"></i>
+                    <i class='bx bx-star star' style="--i: 4;"></i>
+                </div>
+                <textarea name="opinion" cols="30" rows="5" placeholder="Añade un comentario"></textarea>
+                <div class="btn-group">
+                    <button type="submit" class="btn submit">Añadir</button>
+                    <button class="btn cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
 
     </main>
 
@@ -181,5 +222,7 @@
             <p>Derechos Reservados PALTACATE.COM 2024</p>
         </div>
     </footer>    
+    <script src="js/scripts.js"></script>
+    <script src="js/recetascripts.js"></script>
 </body>
 </html>
