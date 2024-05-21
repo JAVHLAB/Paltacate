@@ -4,19 +4,24 @@ Remplazo de crearReceta.html
 Se requiere de la conexion a la BD
 
 Falta:
--Que las recetas se agreguen al usuario correspondiennte --- Creooo que ya quedo esto
--Completar el comando para agregar los ingredientes a la BD
--Las imagenes aun no estan bien implementadas en el php, y falta separar la imagen "miniatura" de las normales
--Agregar los pasos(preparacion) a la bd y tambien los ingredientes
--Otros campos (calificacion, dificultad, imagenes, etc)**
--Revisar ambos IDs
+-Que las recetas se agreguen al usuario correspondiennte --- Creooooo que ya quedo esto
 
--***Crear un link y la pagina para cada receta
+-Revisar ambos IDs (usuario y receta)
+-Completar el comando para agregar los ingredientes a la BD
+-Las imagenes aun no estan bien implementadas en el php, y falta separar la imagen "miniatura O principal" de las normales
+-Agregar los pasos(preparacion) a la bd y tambien los ingredientes
+-Otros campos (calificacion, imagenes, etc)**
+
+
+-***Revisar que el link de cada receta funcione y no se repita, y agregarlo en una nueva columna en la BD
 -Estilos para las recetas
  
+
+
 Videos usados:
 https://www.youtube.com/watch?v=oL0oFH3bo1g&list=PLYxW6dLXNCQ8_7C2Srx4DiIbmN41oElwz&index=13&ab_channel=TUNTORIALESCODIGO
 https://www.youtube.com/watch?v=0Xry72Pjres&list=PLGfF3KgbxaiwuXKuWwydK-X_xT1LZ422F&index=8&ab_channel=FredyGeek
+
 
 
 a
@@ -235,10 +240,13 @@ a
                 
                 $titulo = mysqli_real_escape_string($conexion, $_POST['nombre']);
                 $tiempo_preparacion = mysqli_real_escape_string($conexion, $_POST['tiempo']);
-                $categoria = mysqli_real_escape_string($conexion, $_POST['tipos'][0]);
+                $categoria = mysqli_real_escape_string($conexion, $_POST['tipos']);
                 $porciones = mysqli_real_escape_string($conexion, $_POST['porciones']);
                 $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
 
+                $pasos_preparacion = mysqli_real_escape_string($conexion, $_POST['preparacion']);
+
+                
 
                 $publicacion = mysqli_real_escape_string($conexion, $_POST['formulario']); //Puede que esta no sea necesaria :D
 
@@ -494,7 +502,7 @@ a
                           </html>";
                 
                             // Ruta del archivo HTML
-                            $file_path = "recetas/receta-$id_receta.html";//Modificar el link para que no se repitan
+                            $file_path = "../recetas/receta-$id_receta.html";//Modificar el link para que no se repitan
                 
                             // Guardar el archivo HTML
                             file_put_contents($file_path, $html_content);
