@@ -78,6 +78,15 @@ document.querySelectorAll('.input-file').forEach(function(inputFile) {
     });
   }
 
+// Función para eliminar la última fila de ingredientes, pero no la primera
+function eliminarIngrediente() {
+  const ingredientesContainer = document.getElementById('ingredientes-container');
+  const filas = ingredientesContainer.getElementsByClassName('ingredient-row');
+  if (filas.length > 1) { // Asegura que al menos una fila permanezca
+      ingredientesContainer.removeChild(filas[filas.length - 1]);
+  }
+}
+
   window.addEventListener('load', function() {
     // Obtener el elemento del icono de perfil
     var profileImg = document.getElementById("profile-img");
