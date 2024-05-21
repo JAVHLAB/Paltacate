@@ -41,7 +41,7 @@ a
 <body>
   <header>
     <nav id="navbar-paltacate">
-        <a href="../index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+        <a href="../index.html"><img src="../img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
         <div class="left-items">
             <ul class="first">
                 <li><a href="../index.html" id="inicio">Inicio</a></li>
