@@ -6,6 +6,8 @@ Falta:
 -Imagenes
 -Pagina final actualizada
 
+Video usado:
+https://www.youtube.com/watch?v=o-ZPo6tcUc8&list=PLGfF3KgbxaiwuXKuWwydK-X_xT1LZ422F&index=9&ab_channel=FredyGeek
 -->
 
 <?php
@@ -29,7 +31,7 @@ Falta:
 <body>
   <header>
     <nav id="navbar-paltacate">
-        <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+        <a href="index.html"><img src="../img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
         <div class="left-items">
             <ul class="first">
                 <li><a href="../index.html" id="inicio">Inicio</a></li>
