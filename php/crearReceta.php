@@ -27,8 +27,6 @@ https://www.youtube.com/watch?v=0Xry72Pjres&list=PLGfF3KgbxaiwuXKuWwydK-X_xT1LZ4
 a
 
 --> 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +40,8 @@ a
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/crearReceta.css">
+    <script src="../js/scripts.js"></script>
+
 </head>
 <body>
   <header>
@@ -166,11 +166,13 @@ a
                 </div>
               </div>
 
-              <button class="boton campo" type="button" onclick="agregarIngrediente()">Agregar Ingrediente</button>
 
+              <div class="boton-group">
+                <button class="boton campo" type="button" onclick="agregarIngrediente()">Agregar Ingrediente</button>
+                <button class="boton btn campo" type="button" onclick="eliminarIngrediente()">Eliminar Ingrediente</button>
+              </div>
               
-
-
+              
               <div class="campo">
                 <textarea class="input-text" id="preparacion" name="preparacion" placeholder="Instrucciones"></textarea>
               </div>
@@ -246,7 +248,7 @@ a
 
                 $pasos_preparacion = mysqli_real_escape_string($conexion, $_POST['preparacion']);
 
-                
+
 
                 $publicacion = mysqli_real_escape_string($conexion, $_POST['formulario']); //Puede que esta no sea necesaria :D
 
