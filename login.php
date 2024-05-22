@@ -38,7 +38,7 @@
                     <input type="password" name="password" placeholder="Contraseña" required>
                     <button class="boton"  type="submit">Iniciar Sesion</button>
                 </form>
-                <p>¿Aún no tienes una cuenta? <a class="links" href="registro.html">Regístrate aquí</a></p>
+                <p>¿Aún no tienes una cuenta? <a class="links" href="registro.php">Regístrate aquí</a></p>
                 <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
          </div>
             
@@ -48,8 +48,8 @@
         <div class="columna">
             <h3>Perfil</h3>
             <ul>
-                <li><a href="login.html">Iniciar Sesión</a></li>
-                <li><a href="registro.html">Registrarse</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="registro.php">Registrarse</a></li>
             </ul>
         </div>
         <div class="columna">

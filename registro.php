@@ -1,3 +1,12 @@
+<?php
+        session_start();
+
+        if(isset($_SESSION['ID_usuario'])){
+            header("location: perfil.php");
+        }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +31,7 @@
                     <input type="password" name="password" placeholder="Contraseña" required>
                     <button class="boton" type="submit">Crear cuenta</button>
                 </form>
-                <p>¿Ya estas registrado? <a class="links" href="login.html">Inicia sesión aquí</a></p>
+                <p>¿Ya estas registrado? <a class="links" href="login.php">Inicia sesión aquí</a></p>
                 <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
          </div>
             
@@ -32,8 +41,8 @@
         <div class="columna">
             <h3>Perfil</h3>
             <ul>
-                <li><a href="#">Iniciar Sesión</a></li>
-                <li><a href="#">Registrarse</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="registro.php">Registrarse</a></li>
             </ul>
         </div>
         <div class="columna">

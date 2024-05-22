@@ -99,7 +99,7 @@ mysqli_close($conexion);
         <div class="contenido-portada">
             <div class="background-image"></div>
             <img src="img/hotdog.jpg" alt="Imagen de contacto" class="contact-image">
-            <a class="boton" href="">Editar</a>
+            <a class="boton" href="editarPerfil.php">Editar</a>
         </div>
 
         <div class="contenido-solido">

@@ -1,6 +1,5 @@
 <?php
 
-
 include 'conexion.php';
 
 $nombre_completo = $_POST['fullname'];
@@ -8,35 +7,43 @@ $email = $_POST['email'];
 $usuario = $_POST['username'];
 $password = $_POST['password'];
 
-
 // Validar la longitud del usuario
 if (strlen($usuario) < 8 || strlen($usuario) > 20) {
-    echo "¡El nombre de usuario debe tener entre 8 y 20 caracteres";
+    echo '<script>
+        alert("¡El nombre de usuario debe tener entre 8 y 20 caracteres");
+        window.location = "../login.php";
+        </script>';
     exit();
 }
 
 // Validar la longitud de la contraseña
 if (strlen($password) < 8 || strlen($password) > 12) {
-    echo "¡La contraseña debe tener entre 8 y 12 caracteres!";
+    echo '<script>
+        alert("¡La contraseña debe tener entre 8 y 12 caracteres!");
+        window.location = "../login.php";
+        </script>';
     exit();
 }
 
 // Verificar que el correo no se repita en la base de datos
 $verificar_correo = mysqli_query($conexion, "SELECT * FROM usuarios WHERE email ='$email'");
-
 if (mysqli_num_rows($verificar_correo) > 0) {
-    echo "Correo existente, intentalo otra vez";
+    echo '<script>
+        alert("¡Correo existente, intentalo otra vez!");
+        window.location = "../login.php";
+        </script>';
     exit();
 }
 
 // Verificar que el usuario no se repita en la base de datos
 $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre_usuario ='$usuario'");
-
 if (mysqli_num_rows($verificar_usuario) > 0) {
-    echo "Usuario existente, intentalo otra vez";
+    echo '<script>
+    alert("¡Usuario existente, intentalo otra vez!");
+    window.location = "../login.php";
+    </script>';
     exit();
 }
-
 
 // Validar y encriptar la contraseña (omitiendo las validaciones aquí por brevedad)
 $password = sha1($password);
@@ -44,8 +51,6 @@ $password = sha1($password);
 // Insertar el usuario en la base de datos con el token de activación
 $query = "INSERT INTO usuarios (nombre, email, nombre_usuario, contrasena)
           VALUES ('$nombre_completo', '$email', '$usuario', '$password')";
-
-
 
 $ejecutar = mysqli_query($conexion, $query);
 
@@ -65,10 +70,9 @@ if ($ejecutar) {
     } else {
         echo "Registrado, pero no se pudo asignar el rol";
     }
-    //enviarCorreoActivacion($email, $token); // Enviar correo de activación
     echo '<script>
         alert("¡Registro exitoso! Por favor, verifica tu correo electrónico para activar tu cuenta.");
-        window.location = "../login.html";
+        window.location = "../login.php";
         </script>';
 } else {
     echo '<script>

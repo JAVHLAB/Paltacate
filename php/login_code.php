@@ -2,7 +2,8 @@
 
 include 'conexion.php';
 
-session_start(); // Start the session
+// Empezamos las sesion
+session_start(); 
 
 $usuario = mysqli_real_escape_string($conexion, $_POST['username']);
 $password = mysqli_real_escape_string($conexion, $_POST['password']);
@@ -11,7 +12,11 @@ $password = mysqli_real_escape_string($conexion, $_POST['password']);
 $verificar_usuario = mysqli_query($conexion, "SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = '$usuario'");
 
 if (mysqli_num_rows($verificar_usuario) == 0) {
-    echo "Usuario no existente, intentalo otra vez";
+    echo '
+        <script>
+            alert("Usuario o contraseña incorrecta, intentrlo de nuevo!");
+            window.location = "../login.php";
+        </script>';
     exit();
 }
 
@@ -28,8 +33,8 @@ if (mysqli_num_rows($validar_login) > 0) {
 } else {
     echo '
         <script>
-            alert("Usuario inexistente, favor verificar sus datos correctamente");
-            window.location = "../login.html";
+            alert("Error al ingresar, favor de intentarlo más tarde!");
+            window.location = "../login.php";
         </script>
     ';
     exit();
