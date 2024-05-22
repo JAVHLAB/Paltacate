@@ -1,3 +1,37 @@
+<?php
+
+include("php/conexion.php");
+
+session_start();
+if (!isset($_SESSION["ID_usuario"])) {
+    header("location: login.html");
+    exit();
+}
+
+$iduser = $_SESSION['ID_usuario'];
+
+// Sanitize the user ID to prevent SQL injection
+$iduser = mysqli_real_escape_string($conexion, $iduser);
+
+$sql = "SELECT ID_usuario, nombre_usuario FROM usuarios WHERE ID_usuario = $iduser";
+$resultado = mysqli_query($conexion, $sql);
+
+if (!$resultado) {
+    die("Query failed: " . mysqli_error($conexion));
+}
+
+$row = mysqli_fetch_assoc($resultado);
+if ($row) {
+    // Use $row['ID_usuario'] and $row['nombre_usuario'] as needed
+    $nombre_usuario = $row['nombre_usuario'];
+} else {
+    echo "No user found with ID: $iduser";
+    exit();
+}
+
+mysqli_close($conexion);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +89,7 @@
         <div id="menu" class="menu">
             <ul>
                 <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                <li><a href="php/cerrar_sesion.php" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
         </div>
     </nav>
@@ -69,7 +103,7 @@
         </div>
 
         <div class="contenido-solido">
-            <h3>Javier Mariscal</h3>     
+        <h3><?php echo htmlspecialchars($nombre_usuario); ?></h3>  
             <div class="iconos">
                 <a class="icono" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">

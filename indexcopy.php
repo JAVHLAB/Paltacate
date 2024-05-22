@@ -1,3 +1,19 @@
+<?php
+
+include("php/conexion.php");
+
+session_start();
+if (!isset($_SESSION["ID_usuario"])) {
+    header("location: login.html");
+}
+
+$iduser = $_SESSION['ID_usuario'];
+
+$sql = "SELECT ID_usuario,nombre_usuario FROM usuarios WHERE ID_usuario = $iduser"; 
+$resultado = mysqli_query($conexion, $sql);
+$row = $validar_login->fetch_all();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +68,9 @@
 
         <div id="menu" class="menu">
             <ul>
-                <li><a href="perfil.php">Perfil</a></li>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li><a href="php/cerrar_sesion.php" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
         </div>
     </nav>

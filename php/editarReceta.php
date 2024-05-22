@@ -87,7 +87,7 @@ https://www.youtube.com/watch?v=o-ZPo6tcUc8&list=PLGfF3KgbxaiwuXKuWwydK-X_xT1LZ4
 
             }else{
                 $id=$_GET['id'];
-                $sql = "SELECT * FROM receras WHERE id= '".$id."' ";
+                $sql = "SELECT * FROM recetas WHERE id= '".$id."' ";
                 $result = mysqli_query($conexion, $sql);
 
                 $fila = mysqli_fetch_assoc($result);

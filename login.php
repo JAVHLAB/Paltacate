@@ -1,3 +1,12 @@
+<?php
+        session_start();
+
+        if(isset($_SESSION['ID_usuario'])){
+            header("location: perfil.php");
+        }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +33,10 @@
             </div>
                 
                 <h2>Iniciar sesión</h2>
-                <form action="php/login.php" method="post">
+                <form action="php/login_code.php" method="POST">
                     <input type="text" name="username" placeholder="Usuario" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
-                    <button class="boton" type="submit">Iniciar Sesion</button>
+                    <button class="boton"  type="submit">Iniciar Sesion</button>
                 </form>
                 <p>¿Aún no tienes una cuenta? <a class="links" href="registro.html">Regístrate aquí</a></p>
                 <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
