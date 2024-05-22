@@ -1,132 +1,84 @@
 <?php
-            if (isset($_POST['guardar']))
-            {
 
-                include 'conexion.php';
+include 'conexion.php';
 
-                /*$titulo = $_POST['nombre'];
-                $tiempo_preparacion = $_POST['tiempo'];
-                $categoria = $_POST['tipos[]'];
-                $porciones = $_POST['porciones'];
-                $descripcion = $_POST['descripcion'];
-                //$a = $_POST['ingredientes'];
-                */
-                
-                $titulo = mysqli_real_escape_string($conexion, $_POST['nombre']);
-                $tiempo_preparacion = mysqli_real_escape_string($conexion, $_POST['tiempo']);
-                $categoria = mysqli_real_escape_string($conexion, $_POST['tipos'][0]);
-                $porciones = mysqli_real_escape_string($conexion, $_POST['porciones']);
-                $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
+session_start();
+if (!isset($_SESSION["ID_usuario"])) {
+    header("location: login.php");
+    exit();
+}
 
+$titulo = $_POST['titulo'];
+$tiempo_preparacion =  $_POST['tiempo'];
+$categoria =  $_POST['tipos'];
+$porciones = $_POST['porciones'];
+$descripcion = $_POST['descripcion'];
+$preparacion = $_POST['preparacion'];
 
-                $publicacion = mysqli_real_escape_string($conexion, $_POST['formulario']); //Puede que esta no sea necesaria :D
-
-                $result = mysqli_query($conexion, "SHOW TABLE STATUS LIKE 'recetas'");
-                $data = mysqli_fetch_assoc($result);
-                $next_increment = $data['Auto_increment'];
-
-                $alea = substr(strtoupper(md5(microtime(true))), 0, 12);
-                $code = $next_increment.$alea;
-
-                $type = 'jpg';
-                $rfoto = $_FILES['foto']['tmp_name'];
-                $name = $code.".".$type;
-
-                if(is_uploaded_file($rfoto)){
-                    $destino = "recetas/".$name;
-                    $nombre = $name;
-                    copy($rfoto, $destino);
-                }
-                else{
-                    $nombre = '';
-                }
+$iduser = $_SESSION['ID_usuario'];
 
 
-                $subir = mysqli_query($conexion, $sql);
-
-                $sql ="INSERT INTO recetas (ID_usuario, titulo, tiempo_preparacion, categoria, porciones,
-                    descripcion, imagen, fecha_publicacion)
-                values('".$_SESSION['ID_usuario']."', '".$titulo."','".$tiempo_preparacion."', '".$categoria."', 
-                    '".$porciones."', '".$descripcion."', '".$nombre."', ,now())";
+$sql = "INSERT INTO recetas (ID_usuario, titulo, tiempo_preparacion, categoria, porciones, descripcion, preparacion)
+        VALUES('$iduser', '$titulo','$tiempo_preparacion', '$categoria', '$porciones', '$descripcion', '$preparacion')";
 
 
-                    //Archivo de receta
-                    if ($stmt = mysqli_prepare($conexion, $sql)) {
-                        mysqli_stmt_bind_param($stmt, "isssiss", $_SESSION['ID_usuario'], $titulo, $tiempo_preparacion, $categoria, $porciones, $descripcion, $nombre_imagen);
-                
-                        if (mysqli_stmt_execute($stmt)) {
-                            // Obtener el ID de la receta recién insertada
-                            $id_receta = mysqli_insert_id($conexion);
-                
-                            // Crear el archivo HTML para la receta
-                            $html_content = "
-                            <!DOCTYPE html>
-                            <html lang='en'>
-                            <head>
-                                <meta charset='UTF-8'>
-                                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                                <title>$titulo</title>
-                                <link rel='stylesheet' href='../css/normalize.css'>
-                                <link rel='stylesheet' href='../css/style.css'>
-                            </head>
-                            <body>
-                                <header>
-                                    <nav id='navbar-paltacate'>
-                                        <a href='../index.html'><img src='../img/paltacate_logo.png' alt='Paltacate_icon' id='paltacate-icon'></a>
-                                        <div class='left-items'>
-                                            <ul class='first'>
-                                                <li><a href='../index.html' id='inicio'>Inicio</a></li>
-                                                <li><a href='../explorar.html' id='explorar'>Explorar</a></li>
-                                                <li><a href='crearReceta.html' id='Crear'>Crear receta</a></li>
-                                            </ul>
-                                        </div>
-                                    </nav>
-                                </header>
-                                <main>
-                                    <h1>$titulo</h1>
-                                    <p><strong>Tiempo de preparación:</strong> $tiempo_preparacion minutos</p>
-                                    <p><strong>Categoría:</strong> $categoria</p>
-                                    <p><strong>Porciones:</strong> $porciones</p>
-                                    <p><strong>Descripción:</strong> $descripcion</p>
-                                    <img src='../recetas/$nombre_imagen' alt='Imagen de la receta'>
-                                </main>
-                            </body>
-                            </html>";
-                
-                            // Ruta del archivo HTML
-                            $file_path = "recetas/receta-$id_receta.html";
-                
-                            // Guardar el archivo HTML
-                            file_put_contents($file_path, $html_content);
-                
-                            echo "<script>
-                                    alert('La receta se creó correctamente');
-                                    window.location.href = '../index.html';
-                                  </script>";
-                        } else {
-                            echo "<script>
-                                    alert('ERROR: La receta NO se creó correctamente');
-                                    window.location.href = 'crearReceta.php';
-                                  </script>";
-                        }
-                        mysqli_stmt_close($stmt);
+if (mysqli_query($conexion, $sql)) {
+    $id_receta = mysqli_insert_id($conexion);
+    echo "Nueva receta creada con éxito. El ID de la receta es: " . $id_receta;
+
+    // Recorrer los arreglos de ingredientes y hacer las inserciones
+    $nombres = $_POST['nombre'];
+    $cantidades = $_POST['cantidad'];
+    $unidades = $_POST['unidad'];
+
+    echo "Nueva receta creada con éxito. El ID de la receta es: " . count($unidades);
+
+    for ($i = 0; $i < count($nombres); $i++) {
+        $nombre = mysqli_real_escape_string($conexion, $nombres[$i]);
+        $cantidad = mysqli_real_escape_string($conexion, $cantidades[$i]);
+        $unidad = mysqli_real_escape_string($conexion, $unidades[$i]);
+
+        $ingredientes_sql = "INSERT INTO ingredientes (ID_recetas, nombre, cantidad, unidad)
+                             VALUES('$id_receta', '$nombre', '$cantidad', '$unidad')";
+
+        if (mysqli_query($conexion, $ingredientes_sql)) {
+
+            // Configuration
+            $upload_dir = 'recetas/'; // directory to save the uploaded files
+            $allowed_types = array('image/jpeg', 'image/png', 'image/gif'); // allowed image types
+
+            // Loop through each file uploaded
+            foreach ($_FILES as $file) {
+                // Check if the file is an image
+                if (in_array($file['type'], $allowed_types)) {
+                    // Generate a unique filename
+                    $filename = uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+
+                    // Move the uploaded file to the upload directory
+                    if (move_uploaded_file($file['tmp_name'], $upload_dir . $filename)) {
+                        // File uploaded successfully
+                        echo "File uploaded successfully: " . $filename . "<br>";
+                    } else {
+                        // Error uploading file
+                        echo "Error uploading file: " . $file['name'] . "<br>";
                     }
-
-                    
-                    /*
-                if($subir){
-                    echo " <script languaje='Javascript'>
-                            alert('La receta se creo correctamente');
-                            location.assign('index.html');
-                            </script>";
-                }else{
-                    echo " <script languaje='Javascript'>
-                            alert('ERROR: La receta NO se creo correctamente');
-                            location.assign('crearReceta.html');
-                            </script>";
-                }*/
-            
-                mysqli_close($conexion);
-
+                } else {
+                    // File type not allowed
+                    echo "File type not allowed: " . $file['name'] . "<br>";
+                }
             }
-        ?>
+        }
+    }
+
+    echo '<script>
+    alert("¡Receta Guardada!")
+    window.location = "../perfil.php";
+    </script>';
+} else {
+    echo '<script>
+    alert("¡Receta No Guardada!")
+    window.location = "../crearReceta.php";
+    </script>';
+}
+
+mysqli_close($conexion);

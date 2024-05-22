@@ -41,29 +41,7 @@ document.querySelectorAll('.input-file').forEach(function(inputFile) {
     nuevaFila.innerHTML = `
       <input class="input-text" type="text" name="nombre[]" placeholder="Nombre del Ingrediente" required>
       <input class="input-text" type="number" name="cantidad[]" placeholder="Cantidad" min="1" required>
-      <select class="input-text" name="unidades[]">
-        <option value="" disabled selected>Seleccione la unidad</option>
-        <option value="gramos">Gramos (g)</option>
-        <option value="kilogramos">Kilogramos (kg)</option>
-        <option value="miligramos">Miligramos (mg)</option>
-        <option value="onzas">Onzas (oz)</option>
-        <option value="libras">Libras (lb)</option>
-        <option value="mililitros">Mililitros (ml)</option>
-        <option value="litros">Litros (lt)</option>
-        <option value="centimetros-cubicos">Centímetros cúbicos (cm³)</option>
-        <option value="tazas">Tazas (cup)</option>
-        <option value="cucharadas">Cucharadas (tbsp)</option>
-        <option value="cucharaditas">Cucharaditas (tsp)</option>
-        <option value="onzas-liquidas">Onzas líquidas (fl oz)</option>
-        <option value="unidades">Unidades (u)</option>
-        <option value="piezas">Piezas (pz)</option>
-        <option value="rebanadas">Rebanadas (sl)</option>
-        <option value="rodajas">Rodajas (slc)</option>
-        <option value="porciones">Porciones (porc)</option>
-        <option value="bolsas">Bolsas (bag)</option>
-        <option value="botellas">Botellas (btl)</option>
-        <!-- Agrega más opciones según tus necesidades -->
-      </select>
+      <input class="input-text" type="text" name="unidad[]" placeholder="Unidad"  required>
     `;
     ingredientesContainer.appendChild(nuevaFila);
   
@@ -112,5 +90,36 @@ function eliminarIngrediente() {
     // Agregar código para cerrar sesión aquí
     alert("Cerrar sesión");
   }
-  
-  
+
+  // Get the form element
+const form = document.querySelector('form');
+
+// Add a submit event listener to the form
+form.addEventListener('submit', async (event) => {
+    // Prevent the form from submitting normally
+    event.preventDefault();
+
+    // Get the form data
+    const formData = new FormData(form);
+
+    // Send a POST request to the PHP script
+    const response = await fetch('save_image.php', {
+        method: 'POST',
+        body: formData
+    });
+
+    // Get the response data
+    const data = await response.json();
+
+    // Check if the upload was successful
+    if (data.success) {
+        // Get the corresponding img element
+        const img = document.querySelector(`img[src="#"]`);
+
+        // Update the src attribute of the img element
+        img.src = `uploads/${data.filename}`;
+    } else {
+        // Display an error message
+        alert(data.error);
+    }
+});

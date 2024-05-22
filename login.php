@@ -1,14 +1,19 @@
 <?php
-        session_start();
+session_start();
 
-        if(isset($_SESSION['ID_usuario'])){
-            header("location: perfil.php");
-        }
+if (isset($_SESSION['ID_usuario'])) {
+    echo '
+    <script>
+        alert("¡Ya iniciaste sesion!");
+        window.location = "perfil.php";
+    </script>';
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
@@ -20,28 +25,29 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
     <main>
         <div class="login-container">
             <div class="iconos">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="100" height="100" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                     <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                     <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                 </svg>
             </div>
-                
-                <h2>Iniciar sesión</h2>
-                <form action="php/login_code.php" method="POST">
-                    <input type="text" name="username" placeholder="Usuario" required>
-                    <input type="password" name="password" placeholder="Contraseña" required>
-                    <button class="boton"  type="submit">Iniciar Sesion</button>
-                </form>
-                <p>¿Aún no tienes una cuenta? <a class="links" href="registro.php">Regístrate aquí</a></p>
-                <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
-         </div>
-            
+
+            <h2>Iniciar sesión</h2>
+            <form action="php/login_code.php" method="POST">
+                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button class="boton" type="submit">Iniciar Sesion</button>
+            </form>
+            <p>¿Aún no tienes una cuenta? <a class="links" href="registro.php">Regístrate aquí</a></p>
+            <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
+        </div>
+
     </main>
 
     <footer class="footer">
@@ -70,7 +76,8 @@
         <div class="columna">
             <p>Derechos Reservados PALTACATE.COM 2024</p>
         </div>
-    </footer> 
-  
+    </footer>
+
 </body>
+
 </html>

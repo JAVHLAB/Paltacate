@@ -93,8 +93,6 @@ a
 
     <main class="form">
 
-
-
         <h1>Crea tu propia receta</h1>
         <form class="formulario" id="miFormulario">
           <fieldset>
@@ -224,13 +222,11 @@ a
             <button type="submit" name="guardar" class="boton" >Guardar</button>
         </form>
 
-
-
-        <?php
+          <?php
             if (isset($_POST['guardar']))
             {
 
-                include('conexion.php');
+                include 'conexion.php';
 
                 /*$titulo = $_POST['nombre'];
                 $tiempo_preparacion = $_POST['tiempo'];
@@ -250,7 +246,7 @@ a
 
 
 
-                $publicacion = mysqli_real_escape_string($conexion, $_POST['formulario']); //Puede que esta no sea necesaria :D
+                // $publicacion = mysqli_real_escape_string($conexion, $_POST['formulario']); //Puede que esta no sea necesaria :D
 
                 $result = mysqli_query($conexion, "SHOW TABLE STATUS LIKE 'recetas'");
                 $data = mysqli_fetch_assoc($result);

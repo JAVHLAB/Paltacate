@@ -4,7 +4,11 @@ include("php/conexion.php");
 
 session_start();
 if (!isset($_SESSION["ID_usuario"])) {
-    header("location: login.html");
+    echo'
+    <script>
+        alert("¡Inicia Sesion para crear recetas!");
+        window.location = "login.php";
+    </script>';
     exit();
 }
 
@@ -57,7 +61,7 @@ mysqli_close($conexion);
             <ul class="first">
                 <li><a href="index.html" id="inicio">Inicio</a></li>
                 <li><a href="explorar.html" id="explorar">Explorar</a></li>
-                <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
+                <li><a href="crearReceta.php" id="Crear">Crear receta</a></li>
             </ul>
         </div>
 
@@ -88,7 +92,7 @@ mysqli_close($conexion);
 
         <div id="menu" class="menu">
             <ul>
-                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="php/cerrar_sesion.php" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
         </div>
