@@ -36,9 +36,9 @@
     .campo:nth-child(9) {
         grid-column: 1/3;
     }
-    /*.campo:nth-child(10) {
+    .campo:nth-child(10) {
         grid-column: 1/3;
-    }*/
+    }
 }
 
 
@@ -114,19 +114,39 @@
     grid-column-gap: 10px; /* Agrega espacio entre las columnas */
   }
 
+  /*botones agregar ingredinte------------------------------------------------------------------------------------------------*/
+  .boton-group {
+	display: flex;
+	align-items: end;
+}
+
   .contenedor-campos .boton{
-    background-color: var(--verdeclaro);
+    background-color: var(--verde);
     padding: 5px 10px;
     margin-top: 5px;
     margin-bottom: 20px;
     font-size: 14px;
     width: 20%;
-    justify-self: end;
 }
 
 .contenedor-campos .boton:hover {
     background-color: var(--rosa);
 }
+
+.contenedor-campos .btn{
+    background-color: var(--gris);
+    color: var(--verde);
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    width: 20%;
+}
+
+.contenedor-campos .btn:hover {
+    background-color: var(--grisoscuro);
+}
+
 
 
 
