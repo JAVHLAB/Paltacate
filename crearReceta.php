@@ -1,12 +1,8 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['ID_usuario'])) {
-  echo '
-    <script>
-        alert("¡Inicia Sesion para crear recetas!");
-        window.location = "login.php";
-    </script>';
+    header('Location: login.php');
+    exit;
 }
 ?>
 
@@ -19,8 +15,8 @@ if (!isset($_SESSION['ID_usuario'])) {
   <title>Paltacate</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconexionect" href="https://fonts.googleapis.com">
+  <link rel="preconexionect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Staatliches&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/crearReceta.css">
@@ -29,11 +25,11 @@ if (!isset($_SESSION['ID_usuario'])) {
 <body>
   <header>
     <nav id="navbar-paltacate">
-      <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+      <a href="index.php"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
       <div class="left-items">
         <ul class="first">
-          <li><a href="index.html" id="inicio">Inicio</a></li>
-          <li><a href="explorar.html" id="explorar">Explorar</a></li>
+          <li><a href="index.php" id="inicio">Inicio</a></li>
+          <li><a href="explorar.php" id="explorar">Explorar</a></li>
           <li><a href="crearReceta.php" id="Crear">Crear receta</a></li>
         </ul>
       </div>
@@ -46,9 +42,6 @@ if (!isset($_SESSION['ID_usuario'])) {
       </div>
 
       <div class="right-items">
-        <a href="#">
-          <span class="material-symbols-outlined" id="notifications">notifications</span>
-        </a>
         <a href="#" onclick="toggleMenu()">
           <span class="material-symbols-outlined" id="profile-img">account_circle</span>
         </a>
@@ -73,13 +66,9 @@ if (!isset($_SESSION['ID_usuario'])) {
   </header>
 
 
-
-
-
-
   <main class="form">
     <h1>Crea tu propia receta</h1>
-    <form class="formulario" id="miFormulario" action="php/crearRecetas.php" method="POST">
+    <form class="formulario" id="miFormulario" action="php/crearRecetas.php" method="POST" enctype="multipart/form-data">
       <fieldset>
         <legend>LLena todos los campos</legend>
         <div class="contenedor-campos">
@@ -114,9 +103,6 @@ if (!isset($_SESSION['ID_usuario'])) {
             <textarea class="input-text" id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
           </div>
 
-          <!--<div class="campo">
-                <textarea class="input-text" id="ingredientes" name="ingredientes" placeholder="Ingredientes (Separa cada ingrediente con comas)"></textarea>
-              </div>-->
 
           <div class="campo" id="ingredientes-container">
             <div class="ingredient-row">
@@ -139,7 +125,17 @@ if (!isset($_SESSION['ID_usuario'])) {
             <div class="col">
               <label class="input-file">
                 <span class="input-file-label">Seleccionar imagen</span>
-                <input type="file" class="input-file-button" accept="image/*" multiple>
+                <input type="file" name="img_uno" class="input-file-button" accept="image/*" multiple>
+              </label>
+              <div class="image-preview-container">
+                <img class="image-preview" src="#" alt="Vista previa de la imagen">
+              </div>
+            </div>
+
+            <div class="col">
+              <label class="input-file">
+                <span class="input-file-label">Seleccionar imagen</span>
+                <input type="file" name="img_dos" class="input-file-button" accept="image/*" multiple>
               </label>
               <div class="image-preview-container">
                 <img class="image-preview" src="#" alt="Vista previa de la imagen">
@@ -148,7 +144,7 @@ if (!isset($_SESSION['ID_usuario'])) {
             <div class="col">
               <label class="input-file">
                 <span class="input-file-label">Seleccionar imagen</span>
-                <input type="file" class="input-file-button" accept="image/*" multiple>
+                <input type="file" name="img_tres" class="input-file-button" accept="image/*" multiple>
               </label>
               <div class="image-preview-container">
                 <img class="image-preview" src="#" alt="Vista previa de la imagen">
@@ -157,16 +153,7 @@ if (!isset($_SESSION['ID_usuario'])) {
             <div class="col">
               <label class="input-file">
                 <span class="input-file-label">Seleccionar imagen</span>
-                <input type="file" class="input-file-button" accept="image/*" multiple>
-              </label>
-              <div class="image-preview-container">
-                <img class="image-preview" src="#" alt="Vista previa de la imagen">
-              </div>
-            </div>
-            <div class="col">
-              <label class="input-file">
-                <span class="input-file-label">Seleccionar imagen</span>
-                <input type="file" class="input-file-button" accept="image/*" multiple>
+                <input type="file" name="img_cuatro" class="input-file-button" accept="image/*" multiple>
               </label>
               <div class="image-preview-container">
                 <img class="image-preview" src="#" alt="Vista previa de la imagen">

@@ -55,9 +55,9 @@
 
         <div id="menu" class="menu">
             <ul>
-                <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="login.html">Iniciar Sesión</a></li>
-                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="php/cerrar_sesion.php" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
         </div>
     </nav>
@@ -191,7 +191,38 @@
             </form>
         </div>
 
+        <!--Seccion de comentarios---------------------------------->
+        <div class="comments-section">
+            <h2>Comentarios</h2>
+            <div id="comments-container"></div>
+        </div>
 
+        
+        <!--Seccion de prueba, eliminar al ejecutar ------------------------------------------------------------->
+        <div class="comments-section">
+            <h2>Comentarios</h2>
+            <div class="comment">
+
+                <div class="comment-header">
+                    <div class="user-info">
+                        <img src="img/baner.jpg" alt="Foto de Usuario" class="user-image">
+                        <a href="#" class="user-name">Pancho Lopez</a>
+                    </div>
+                    <div class="user-rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    Lo que acaba de hacer el instituto electoral del estado de México es una farsa, una vil simulación.
+                </div>
+            </div>
+        </div>
+        <!--Termina eccion de prueba, eliminar al ejecutar ------------------------------------------------------------->
+        
     </main>
 
     
@@ -224,5 +255,6 @@
     </footer>    
     <script src="js/scripts.js"></script>
     <script src="js/recetascripts.js"></script>
+    <script src="js/comentSection.js"></script>
 </body>
 </html>

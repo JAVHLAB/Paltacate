@@ -45,7 +45,7 @@ if (isset($_SESSION['ID_usuario'])) {
                 <button class="boton" type="submit">Iniciar Sesion</button>
             </form>
             <p>¿Aún no tienes una cuenta? <a class="links" href="registro.php">Regístrate aquí</a></p>
-            <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
+            <p>O vuelve al inicio <a class="links" href="index.php">aquí</a></p>
         </div>
 
     </main>

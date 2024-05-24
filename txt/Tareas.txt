@@ -1,18 +1,18 @@
 Back End
     USUARIOS# Citlali y Angel
-    -Login IMPORTANTE
-    -Verificiacion de Usuarios IMPORTANTE
-    -Contraseña IMPORTANTE
+    -Login TERMINADO
+    -Verificiacion de Usuarios TERMINADO
+    -Contraseña TERMINADO
     -Reportes IMPORTANTE
     -Definir cada tipo de perfil
     -Seguir Perfiles
     -Personalizar Perfil
 
     RECETAS # Juan Pablo y Emmanuel
-    -Recetas IMPORTANTE
+    -Recetas TERMINADO
     -Calificaciones IMPORTANTE
     -Comentarios IMPORTANTE
-    -Buscador IMPORTANTE
+    -Buscador TERMINADO
     -Guardar Recetas
     -Compartir 
     -Descargar
@@ -23,5 +23,5 @@ Back End
 
 
 Front End # Javier
-    -Diseño de pagina web
+    -Diseño de pagina web TERMINADO
     -Adaptar a distintas 

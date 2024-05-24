@@ -18,10 +18,10 @@
 <body>
   <header>
     <nav id="navbar-paltacate">
-        <a href="index.html"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
+        <a href="index.php"><img src="img/paltacate_logo.png" alt="Paltacate_icon" id="paltacate-icon"></a>
         <div class="left-items">
             <ul class="first">
-                <li><a href="index.html" id="inicio">Inicio</a></li>
+                <li><a href="index.php" id="inicio">Inicio</a></li>
                 <li><a href="explorar.html" id="explorar">Explorar</a></li>
                 <li><a href="crearReceta.html" id="Crear">Crear receta</a></li>
             </ul>
@@ -133,7 +133,7 @@
     <div class="columna">
         <h3>Menú</h3>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.php">Inicio</a></li>
             <li><a href="explorar.html">Explorar</a></li>
             <li><a href="crearReceta.html">Crear Receta</a></li>
         </ul>

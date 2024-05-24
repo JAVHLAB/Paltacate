@@ -32,7 +32,7 @@
                     <button class="boton" type="submit">Crear cuenta</button>
                 </form>
                 <p>¿Ya estas registrado? <a class="links" href="login.php">Inicia sesión aquí</a></p>
-                <p>O vuelve al inicio <a class="links" href="index.html">aquí</a></p>
+                <p>O vuelve al inicio <a class="links" href="index.php">aquí</a></p>
          </div>
             
     </main>

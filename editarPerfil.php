@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +47,16 @@
                         <button type="button" class="boton" onclick="document.getElementById('cover-picture-input').click();">Cambiar</button>
                     </div>
                 </div>
+                <hr>
+                <!-- Sección de links a redes sociales -->
+                <div class="links-section">
+                    <h3>Redes Sociales</h3>
+                    <div class="link-fields">
+                        <input type="text" name="twitter" placeholder="Link X">
+                        <input type="text" name="instagram" placeholder="Link instagram">
+                    </div>
+                </div>
+                <hr>
 
                 <!-- Sección de seguridad -->
                 <div class="security-section">
@@ -54,11 +65,12 @@
                     <input type="password" name="new-password" placeholder="Nueva Contraseña">
                     <input type="password" name="confirm-password" placeholder="Confirmar Nueva Contraseña">
                 </div>
+                <hr>
 
                 <button class="boton btn" type="submit">Guardar Cambios</button>
             </form>
             <p>
-                <a class="links" href="perfil.html">Cancelar</a>
+                <a class="links" href="perfil.php">Cancelar</a>
             </p>
         </div>
     </main>

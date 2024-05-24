@@ -1,149 +1,4 @@
-<?php
 
-include 'conexion.php';
-
-session_start();
-if (!isset($_SESSION['ID_usuario'])) {
-    header('Location: login.php');
-    exit;
-}
-
-$titulo = $_POST['titulo'];
-$tiempo_preparacion =  $_POST['tiempo'];
-$categoria =  $_POST['tipos'];
-$porciones = $_POST['porciones'];
-$descripcion = $_POST['descripcion'];
-$preparacion = $_POST['preparacion'];
-
-
-$iduser = $_SESSION['ID_usuario'];
-$direccion = "../recetas/receta-" . urlencode($titulo) . ".php";
-
-
-$sql = "INSERT INTO recetas (ID_usuario, titulo, tiempo_preparacion, categoria, porciones, descripcion, preparacion, url)
-        VALUES('$iduser', '$titulo','$tiempo_preparacion', '$categoria', '$porciones', '$descripcion', '$preparacion', '$direccion')";
-
-
-
-
-if (mysqli_query($conexion, $sql)) {
-    $id_receta = mysqli_insert_id($conexion);
-
-    // Obtener la fecha de creación de la receta
-    $fecha_sql = "SELECT fecha_publicacion FROM recetas WHERE ID_recetas = '$id_receta'";
-    $result = mysqli_query($conexion, $fecha_sql);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $fecha = $row['fecha_publicacion'];
-    } else {
-        $fecha = "Fecha no disponible";
-    }
-
-    // Obtener el nombre del creador usando el ID_usuario
-    $nombre_sql = "SELECT nombre_usuario FROM usuarios WHERE ID_usuario = '$iduser'";
-    $result2 = mysqli_query($conexion, $nombre_sql);
-    if ($result2 && mysqli_num_rows($result2) > 0) {
-        $row2 = mysqli_fetch_assoc($result2);
-        $nombre_creador = $row2['nombre_usuario'];
-    } else {
-        $nombre_creador = "Nombre no disponible";
-    }
-
-    // Obtener la calificacion de la receta
-    $calificacion_sql = "SELECT calificacion FROM recetas WHERE ID_recetas = '$id_receta'";
-    $result3 = mysqli_query($conexion, $calificacion_sql);
-    if ($result3 && mysqli_num_rows($result3) > 0) {
-        $row3 = mysqli_fetch_assoc($result3);
-        $cal = $row3['calificacion'];
-        if ($cal == 0 || $cal <= 0) {
-            $cal = '0/0';
-        }
-    } else {
-        $cal = "0/0";
-    }
-
-    $lista_ingredientes = '';
-
-    // Recorrer los arreglos de ingredientes y hacer las inserciones
-    $nombres = $_POST['nombre'];
-    $cantidades = $_POST['cantidad'];
-    $unidades = $_POST['unidad'];
-
-    for ($i = 0; $i < count($nombres); $i++) {
-        $nombre = mysqli_real_escape_string($conexion, $nombres[$i]);
-        $cantidad = mysqli_real_escape_string($conexion, $cantidades[$i]);
-        $unidad = mysqli_real_escape_string($conexion, $unidades[$i]);
-
-        $ingredientes_sql = "INSERT INTO ingredientes (ID_recetas, nombre, cantidad, unidad)
-                             VALUES('$id_receta', '$nombre', '$cantidad', '$unidad')";
-
-        if (mysqli_query($conexion, $ingredientes_sql)) {
-            $lista_ingredientes .= "<li>$nombre - $cantidad $unidad</li>";
-        }
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Directory where files will be stored
-        $ruta = "../fotosrecetas/";
-    
-        // Check if file was uploaded without errors
-        if (isset($_FILES['img_uno']) && $_FILES['img_uno']['error'] === UPLOAD_ERR_OK) {
-            $fichero = $ruta . basename($_FILES['img_uno']['name']);
-    
-            // Move the uploaded file to the destination directory
-            if (move_uploaded_file($_FILES['img_uno']['tmp_name'], $fichero)) {
-
-                $ingreso_sql = "INSERT INTO receta_imagen (ID_recetas, img_uno) VALUES ('$id_receta', '$fichero')";
-    
-                // Execute query
-                $resultado = mysqli_query($conexion, $ingreso_sql);
-                if ($resultado) {
-                    echo 'El archivo se movió correctamente y se insertó en la base de datos<br>';
-                } else {
-                    echo 'Error al mover el archivo o insertar datos en la base de datos: ' . mysqli_error($conexion) . '<br>';
-                }
-
-                echo 'Se subió el archivo correctamente<br>';
-            } else {
-                echo 'Error al mover el archivo<br>';
-            }
-        } else {
-            echo 'Error en la subida del archivo<br>';
-        }
-    
-        // Retrieve and sanitize the ID_receta (assuming it comes from a form input)
-        $ID_receta = isset($_POST['id_receta']) ? htmlspecialchars($_POST['id_receta']) : '';
-    
-        // Ensure the ID_receta is not empty and the file exists
-        if (!empty($ID_receta) && file_exists($fichero)) {
-            $nombre_archivo = 'receta' . $ID_receta . '.jpg';
-            $destino = $ruta . $nombre_archivo;
-    
-            // Rename the file to the final destination
-            if (rename($fichero, $destino)) {
-                
-    
-                // Insert query
-                $ingresa_sql = "INSERT INTO receta_imagen (ID_receta, img_uno) VALUES ('$ID_receta', '$destino')";
-    
-                // Execute query
-                $resultado = mysqli_query($conexion, $ingresa_sql);
-                if ($resultado) {
-                    echo 'El archivo se movió correctamente y se insertó en la base de datos<br>';
-                } else {
-                    echo 'Error al mover el archivo o insertar datos en la base de datos: ' . mysqli_error($conexion) . '<br>';
-                }
-    
-                // Close connection
-                mysqli_close($conexion);
-            } else {
-                echo 'Error al mover el archivo<br>';
-            }
-        }
-    }
-    
-
-    $contenido_receta = "
     <!DOCTYPE html>
     <html lang='en'>
     <head>
@@ -173,14 +28,14 @@ if (mysqli_query($conexion, $sql)) {
                     </ul>
                 </div>
 
-                <div class='search'>
-                <form method='post' action='../busqueda.php'>
-                    <div class='barra'>
-                        <div><span class='material-symbols-outlined' id='lupa'>search</span></div>
-                        <input type='text' placeholder='Buscar' class='finder' name='busqueda'>
-                    </div>
-                </form>
-            </div>
+                <div class="search">
+                    <form method="post" action="../busqueda.php">
+                        <div class="barra">
+                            <div><span class="material-symbols-outlined" id="lupa">search</span></div>
+                            <input type="text" placeholder="Buscar" class="finder" name="busqueda">
+                        </div>
+                    </form>
+                </div>
 
                 <div class='right-items'>
                     <a href='#' onclick='toggleMenu()'>
@@ -208,11 +63,11 @@ if (mysqli_query($conexion, $sql)) {
         </header>    
 
         <main>
-            <h1>$titulo</h1>
+            <h1>Elote En Vaso</h1>
             <hr>
             <div class='datos'>
-                <p>Fecha de publicacion: $fecha</p>
-                <p>Creador: $nombre_creador</p>
+                <p>Fecha de publicacion: 2024-05-23 07:56:53</p>
+                <p>Creador: blueblue</p>
             </div>
 
             <section class='container'>
@@ -228,7 +83,7 @@ if (mysqli_query($conexion, $sql)) {
                     </div>
                     <div>
                         <h3>Tiempo:</h3>
-                        <p>$tiempo_preparacion</p> 
+                        <p>30</p> 
                     </div>
                 </div>
                 <div class='column'>
@@ -241,7 +96,7 @@ if (mysqli_query($conexion, $sql)) {
                     </div>
                     <div>
                         <h3>Personas:</h3>      
-                        <p>$porciones</p>
+                        <p>4</p>
                     </div>
                 </div>
                 <div class='column'>
@@ -253,7 +108,7 @@ if (mysqli_query($conexion, $sql)) {
                     </div>
                     <div>
                         <h3>Calificación:</h3>
-                        <p>$cal/5</p>
+                        <p>0/5</p>
                     </div>
                 </div>
             </section>
@@ -262,20 +117,20 @@ if (mysqli_query($conexion, $sql)) {
                 <h2>Lista de Ingredientes</h2>
                 <div class='ingredient-container'>
                     <ul class='ingredient-list'>
-                    $lista_ingredientes
+                    <li>Elote - 4 tazas</li><li>Mantequilla - 2 cucharadas</li><li>Sal - 3 pizcas</li><li>Mayonesa - 2 cucharadas</li><li>Salsa - 1 botella</li>
                     </ul>
                 </div>
             </section>
 
             <section class='mainimage'>
-                <img class='image' src='$fichero' alt=''>
+                <img class='image' src='../fotosrecetas/elote.jpg' alt=''>
             </section>
 
             <section>
                 <div class='container-descripcion'>
                     <div class='recipe-description'> 
                         <h2>Descripción</h2>
-                        <p>$descripcion
+                        <p>ELOTE EN VASO
                         </p>
                     </div>
                 </div>
@@ -293,7 +148,20 @@ if (mysqli_query($conexion, $sql)) {
                 <div class='container-descripcion'>
                     <div class='recipe-description'>
                         <h2>Procedimiento</h2>
-                        <p>$preparacion
+                        <p>
+Porciones: 4 a 6
+
+1.- Derrite la mantequilla en una sartén grande a fuego medio. Agrega el maíz y cocina hasta que esté muy caliente, aproximadamente 7 minutos. Sazona con sal, y revuelve con frecuencia.
+
+2.- Bate la crema y la mayonesa en un tazón mediano aparte, separa.
+
+3.- Coloca ½ taza de maíz en un vaso para servir, agrega 2 cucharadas de mayonesa y crema. Cubre con otra ½ taza de maíz.
+
+4.- Cubre con 1 cucharada de la mezcla de mayonesa/crema, una mizca de chile y ñimón en polvo, cilantro, 1 cucharada de queso cotija y jugo de limón.
+
+5.- Repite con los ingredientes restantes.
+
+¡Disfruta!
                         </p>
                     </div>
                 </div>
@@ -316,6 +184,12 @@ if (mysqli_query($conexion, $sql)) {
                         <button class='btn cancel'>Cancelar</button>
                     </div>
                 </form>
+            </div>
+
+            <!--Seccion de comentarios---------------------------------->
+            <div class='comments-section'>
+                <h2>Comentarios</h2>
+                <div id='comments-container'></div>
             </div>
     
             
@@ -351,20 +225,4 @@ if (mysqli_query($conexion, $sql)) {
         <script src='../js/scripts.js'></script>
         <script src='../js/recetascripts.js'></script>
     </body>
-    </html>";
-
-    file_put_contents($direccion, $contenido_receta);
-
-
-    echo '<script>
-    alert("¡Receta Guardada!")
-    window.location = "../perfil.php";
-    </script>';
-} else {
-    echo '<script>
-    alert("¡Receta No Guardada!")
-    window.location = "../crearReceta.php";
-    </script>';
-}
-
-mysqli_close($conexion);
+    </html>

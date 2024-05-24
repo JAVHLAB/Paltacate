@@ -65,13 +65,16 @@ if ($ejecutar) {
     $query_roles = "INSERT INTO usuarios_roles(ID_usuario, ID_rol) VALUES('$id_usuario', '$id_rol')";
     $ejecutar_roles = mysqli_query($conexion, $query_roles);
 
-    if ($ejecutar_roles) {
+    // Insertar en la tabla perfil
+    $query_perfil = "INSERT INTO perfil(ID_usuario) VALUES('$id_usuario')";
+    $ejecutar_perfil = mysqli_query($conexion, $query_perfil);
+
+    if ($ejecutar_roles && $ejecutar_perfil) {
         echo "Registrado y rol asignado";
     } else {
-        echo "Registrado, pero no se pudo asignar el rol";
+        echo "Registrado, pero no se pudo asignar el rol o crear el perfil";
     }
     echo '<script>
-        alert("¡Registro exitoso! Por favor, verifica tu correo electrónico para activar tu cuenta.");
         window.location = "../login.php";
         </script>';
 } else {
@@ -80,6 +83,7 @@ if ($ejecutar) {
         window.location = "../registro.html";
         </script>';
 }
+
 
 mysqli_close($conexion);
 exit();

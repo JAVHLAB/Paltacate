@@ -1,0 +1,62 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+
+}
+
+p {
+    font-size: 16px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.preferencias-container {
+    margin: 0 auto;
+    background-color: var(--gris);
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    margin-bottom: 29px;
+}
+
+
+
+.button-grid button{
+    background-color: var(--rosa);
+    color: var(--negro);
+    font-size: 14px;
+    border-radius: 15px;
+    padding: 5px;
+    font-weight: 700;
+}
+
+.button-grid button:hover{
+    background-color: var(--verde);
+}
+.button-grid button.selected {
+    background-color: var(--verde);
+}
+
+.enviar {
+    margin-top: 20px;
+}
+
+.enviar button {
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 5px;
+    font-weight: 700;
+    width: 100px;
+}
+
+.enviar button:hover{
+    background-color: var(--cafe);
+}
